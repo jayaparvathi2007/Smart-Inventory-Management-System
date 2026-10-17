@@ -1,0 +1,19 @@
+# Compiled class files
+bin/
+webapp/WEB-INF/classes/
+*.class
+
+# Log files
+*.log
+
+# IDE configuration
+.idea/
+.vscode/
+*.iml
+.project
+.classpath
+.settings/
+
+# OS metadata
+.DS_Store
+Thumbs.db
