@@ -1,0 +1,16 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/webapp/login.html" },
+    { "source": "/login", "destination": "/webapp/login.html" },
+    { "source": "/index", "destination": "/webapp/index.html" },
+    { "source": "/products", "destination": "/webapp/products.html" },
+    { "source": "/stock", "destination": "/webapp/stock.html" },
+    { "source": "/categories", "destination": "/webapp/categories.html" },
+    { "source": "/suppliers", "destination": "/webapp/suppliers.html" },
+    { "source": "/reports", "destination": "/webapp/reports.html" },
+    { "source": "/css/:match*", "destination": "/webapp/css/:match*" },
+    { "source": "/js/:match*", "destination": "/webapp/js/:match*" },
+    { "source": "/:file((?!api/).*\\.(html|css|js|png|jpg|svg|ico|json|csv))", "destination": "/webapp/$1" }
+  ]
+}
