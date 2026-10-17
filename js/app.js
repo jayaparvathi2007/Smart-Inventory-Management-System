@@ -26,7 +26,7 @@ async function fetchAPI(url, options = {}) {
 
             // Check if unauthorized
             if (response.status === 401) {
-                if (!window.location.pathname.endsWith('login.html') && !window.location.pathname.endsWith('/login')) {
+                if (document.getElementById('login-form') === null) {
                     window.location.href = 'login.html';
                 }
                 throw new Error('Session expired. Please log in.');
@@ -151,7 +151,7 @@ function escapeHtml(text) {
 
 // Session check & UI init
 async function initAuthCheck() {
-    const isLoginPage = window.location.pathname.endsWith('login.html') || window.location.pathname.endsWith('/login') || window.location.pathname === '/';
+    const isLoginPage = document.getElementById('login-form') !== null;
 
     try {
         const res = await fetchAPI('api/auth');
@@ -165,11 +165,13 @@ async function initAuthCheck() {
             if (userRoleEl) userRoleEl.textContent = user.role || 'Staff';
             if (userAvatarEl) userAvatarEl.textContent = (user.fullName || user.username || 'U').charAt(0).toUpperCase();
 
+            // If already authenticated and on the login screen, forward to dashboard
             if (isLoginPage) {
                 window.location.href = 'index.html';
             }
         }
     } catch (err) {
+        // If unauthenticated and on a protected page, redirect to login
         if (!isLoginPage) {
             window.location.href = 'login.html';
         }
